@@ -27,6 +27,10 @@ inteiro = {digito}+
           }
 "+"       { return new Symbol(sym.MAIS); }
 "-"       { return new Symbol(sym.MENOS); }
+"*"       { return new Symbol(sym.MULTIPLICA); }
+"/"       { return new Symbol(sym.DIVIDE); }
+"%"       { return new Symbol(sym.RESTO); }
+"^"       { return new Symbol(sym.POTENCIA); }
 "("       { return new Symbol(sym.PARENTESQ); }
 ")"       { return new Symbol(sym.PARENTDIR); }
 ";"       { return new Symbol(sym.PTVIRG); }

@@ -7,14 +7,18 @@
 public class sym {
   /* terminals */
   public static final int MAIS = 3;
-  public static final int PTVIRG = 6;
+  public static final int PTVIRG = 10;
+  public static final int DIVIDE = 7;
+  public static final int POTENCIA = 8;
   public static final int INTEIRO = 2;
   public static final int MENOSUNARIO = 5;
   public static final int MENOS = 4;
+  public static final int RESTO = 9;
   public static final int EOF = 0;
-  public static final int PARENTESQ = 7;
+  public static final int PARENTESQ = 11;
+  public static final int MULTIPLICA = 6;
   public static final int error = 1;
-  public static final int PARENTDIR = 8;
+  public static final int PARENTDIR = 12;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -22,6 +26,10 @@ public class sym {
   "MAIS",
   "MENOS",
   "MENOSUNARIO",
+  "MULTIPLICA",
+  "DIVIDE",
+  "POTENCIA",
+  "RESTO",
   "PTVIRG",
   "PARENTESQ",
   "PARENTDIR"
