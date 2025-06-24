@@ -1,0 +1,1 @@
+FROM users SELECT name, email WHERE age > 25 AND city = 'New York'

@@ -1,0 +1,68 @@
+import java_cup.runtime.*;
+
+parser code {:
+  public static void main(String[] args) throws Exception
+  {
+    if (args.length == 0) {
+      System.err.println("Uso: java MeuParser <arquivo_de_consulta>");
+      return;
+    }
+    try {
+      QueryLexer queryLexer = new QueryLexer(new java.io.FileReader(args[0]));
+      MeuParser p = new MeuParser(queryLexer);
+      Object result = p.parse().value;
+      System.out.println("Consulta válida: " + result);
+    } catch (Exception e) {
+      System.err.println("Erro ao analisar a consulta: " + e.getMessage());
+      e.printStackTrace();
+    }
+  }
+
+  // Métodos para reportar erros (útil para depuração)
+  public void syntax_error(Symbol cur_token) {
+    System.err.println("Erro de sintaxe na linha " + (cur_token.left + 1) + ", coluna " + (cur_token.right + 1) + ". Token inesperado: '" + cur_token.value + "'");
+  }
+
+  public void report_fatal_error(String message, Object info) {
+    System.err.println("Erro fatal: " + message);
+    throw new RuntimeException(message);
+  }
+:};
+
+// Terminais (tokens do lexer)
+terminal FROM, SELECT, WHERE, AND, VIRGULA,
+         ATRIBUICAO, MAIORQUE, MENORQUE, MAIORIGUAL, MENORIGUAL, NAOIGUAL, TODOS; // 'TODOS' do lexer
+terminal String ID, STRING;
+terminal Integer NUMERO;
+
+non terminal query, table, fields, field_list,
+             opt_where, conditions, condition,
+             operator, value;
+
+query ::= FROM table SELECT fields opt_where {:RESULT = "Consulta válida"; :}; 
+table ::= ID;
+
+fields ::= TODOS 
+         | field_list;
+
+field_list ::= ID
+             | field_list VIRGULA ID;
+
+opt_where ::= WHERE conditions
+            | /* EMPTY */;
+
+conditions ::= condition
+             | conditions AND condition;
+
+condition ::= value operator value;
+
+operator ::= ATRIBUICAO
+           | MAIORQUE
+           | MENORQUE
+           | MAIORIGUAL
+           | MENORIGUAL
+           | NAOIGUAL;
+
+value ::= ID
+        | NUMERO
+        | STRING;

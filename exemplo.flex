@@ -1,5 +1,3 @@
-/* Definição: seção para código do usuário. */
-
 import java_cup.runtime.Symbol;
 
 %%

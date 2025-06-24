@@ -1,0 +1,13 @@
+{
+  "nome": "João",
+  "idade": 30,
+  "isEstudante": false,
+  "notas": [95, 88, 72],
+  "endereco": {
+    "rua": "Rua Principal",
+    "numero": 123,
+    "cidade": "Alguma Cidade"
+  },
+  "tags": ["programacao", "json", "teste"],
+  "valor_nulo": null
+}
